@@ -70,19 +70,18 @@ TABLE OF CONTENTS
 ## Labwork for RISCV Toolchain
 We wrote a C program for calculating the sum from 1 to n using a text editor
 
-// #include<stdio.h>
+``` c
+#include<stdio.h>
 
-    int main()
-    {
-    int i, sum=0, n=100;
-    for (i=1;i<=n; ++i) 
-    {
-    sum +=i;
-    }
-    printf("Sum of numbers from 1 to %d is %d \n",n,sum);
-    return 0;
-    }
-
+int main(){
+	int i, sum=0, n=26;
+	for (i=1;i<=n; ++i) {
+	sum +=i;
+	}
+	printf("Sum of numbers from 1 to %d is %d \n",n,sum);
+	return 0;
+}
+```
 
 Using the gcc compiler, we compiled the program to get the output.
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/351a0ab8-e5ac-4177-b66c-341305b20e7f)
@@ -111,31 +110,33 @@ spike -d pk sum1ton.o is used debugging
 - Range : -(2^(N-1)) to 2^(N-1) - 1.
 
 ## Labwork
-// #include <stdio.h>
-   #include <math.h>
+``` c
+#include <stdio.h>
+#include <math.h>
 
-    int main()
-    {
-    unsigned long long int max = (unsigned long long int) (pow(2,64) -1);
-    unsigned long long int min = (unsigned long long int) (pow(2,64) *(-1));
-    printf("lowest number represented by unsigned 64-bit integer is %llu\n",min);
-    printf("highest number represented by unsigned 64-bit integer is %llu\n",max);
-    return 0;
-    }
+int main(){
+	unsigned long long int max = (unsigned long long int) (pow(2,64) -1);
+	unsigned long long int min = (unsigned long long int) (pow(2,64) *(-1));
+	printf("lowest number represented by unsigned 64-bit integer is %llu\n",min);
+	printf("highest number represented by unsigned 64-bit integer is %llu\n",max);
+	return 0;
+}
+```
 ![Screenshot from 2023-08-19 08-45-25](https://github.com/benedict04/pes_asic_class/assets/109859485/8a99bfd2-da46-42c2-81dc-c454f303d66b)
 
 ### Signed 64-bit Number
-//  #include <stdio.h>
-    #include <math.h>
+``` c
+#include <stdio.h>
+#include <math.h>
 
-       int main()
-       {
-       unsigned long long int max = (unsigned long long int) (pow(2,64) -1);
-       unsigned long long int min = (unsigned long long int) (pow(2,64) *(-1));
-       printf("lowest number represented by unsigned 64-bit integer is %llu\n",min);
-       printf("highest number represented by unsigned 64-bit integer is %llu\n",max);
-       return 0;
-      }
+int main(){
+	long long int max = (long long int) (pow(2,63) -1);
+	long long int min = (long long int) (pow(2,63) *(-1));
+	printf("lowest number represented by signed 64-bit integer is %lld\n",min);
+	printf("highest number represented by signed 64-bit integer is %lld\n",max);
+	return 0;
+}
+```
 ![Screenshot from 2023-08-19 10-57-43](https://github.com/benedict04/pes_asic_class/assets/109859485/c3d8415c-291a-4d55-a9ae-de46829b42c4)
 
 
@@ -152,8 +153,11 @@ spike -d pk sum1ton.o is used debugging
 
 ## Load, Add and Store Instructions
 - Load Instructions: Load instructions are used to transfer data from memory to registers. They allow you to fetch data from a specified memory address and place it into a register for further processing.
+  Example `ld x6, 8(x5)`
 - Store Instructions: Store instructions are used to write data from registers into memory.They store values from registers into memory addresses
+  Example `sd x8, 8(x9)`
 - Add Instructions: Add instructions are used to perform addition operations on registers. They add the values of two source registers and store the result in a destination register.
+  Example `add x9, x10, x11`
 
 ## Registers and their ABI Names
 ABI names for registers serve as a standardized way to designate the purpose and usage of specific registers within a software ecosystem. These names play a critical role in maintaining compatibility, optimizing code generation, and facilitating communication between different software components.
@@ -174,39 +178,48 @@ ABI names for registers serve as a standardized way to designate the purpose and
 - In the assembly file, you declare assembly functions with appropriate signatures that match the calling conventions of your platform.
 
   ### c program
- // #include <stdio.h>
-
-     extern int load(int x, int y);
-
-     int main()
-     {
-     int result = 0;
-     int count = 9;
-     result = load(0x0, count+1);
-     printf("Sum of numbers from 1 to 9 is %d\n", result);
-    }
-
-### Asseembly File 
-// .section .text
- 
-   .global load
+  ``` c
+  #include <stdio.h>
   
-   .type load, @function
-
-    load:
-
-    add a4, a0, zero
-    add a2, a0, a1
-    add a3, a0, zero
-
-    loop:
-
-    add a4, a3, a4
-    addi a3, a3, 1
-    blt a3, a2, loop
-    add a0, a4, zero
-    ret
+  extern int load(int x, int y);
   
+  int main()
+  {
+    int result = 0;
+    int count = 9;
+    result = load(0x0, count+1);
+    printf("Sum of numbers from 1 to 9 is %d\n", result);
+  }
+```
+
+### Asseembly File
+**Asseembly File**
+`load.s`
+``` s
+.section .text
+.global load
+.type load, @function
+
+load:
+
+add a4, a0, zero
+add a2, a0, a1
+add a3, a0, zero
+
+loop:
+
+add a4, a3, a4
+addi a3, a3, 1
+blt a3, a2, loop
+add a0, a4, zero
+ret
+```
+## Simulate C Program using Function Call
+**Compilation:** To compile C code and Asseembly file use the command `riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o custom1to9.o custom1to9.c load.s` this would generate object file `custom1to9.o`.
+
+**Execution:** To execute the object file run the command `spike pk custom1to9.o`
+
+
  
 
 
