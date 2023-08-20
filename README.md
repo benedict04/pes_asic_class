@@ -1,20 +1,21 @@
 # pes_asic_class
 The objective of VLSI (Very Large Scale Integration) physical design for ASICs (Application-Specific Integrated Circuits) is to transform a digital circuit's logical representation into a physical layout that meets various performance, power, area, and manufacturability requirements.
 
-SKILL OUTCOMES
+## SKILL OUTCOMES
 
-Architectural Design
-RTL Design / Behavioral Modeling
-Floorplanning
-placement
-clock Tree Synthesis
-Routing
+-  Architectural Design
+-  RTL Design / Behavioral Modeling
+-  Floorplanning
+-  placement
+-  clock Tree Synthesis
+-  Routing
+
 
 TABLE OF CONTENTS
 
  DAY 1
 
-Introduction to RISCV ISA and GNU Compiler Toolchain
+## Introduction to RISCV ISA and GNU Compiler Toolchain
 - Introduction to Basic Keywords
 
   Introduction
@@ -26,11 +27,11 @@ Introduction to RISCV ISA and GNU Compiler Toolchain
 
   - It is an open-source Instruction Set Architecture (ISA) that has gained significant attention and adoption in the world of computer architecture and semiconductor design.
   - RISC architectures simplify the instruction set by focusing on a smaller set of instructions, each of which can be executed in a single clock cycle. This approach usually leads to faster execution of individual instructions.
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/9b741651-11c9-474f-ab28-dcb517cdb588)
 
-https://user-images.githubusercontent.com/142098395/261306361-4eabe0b7-4581-419b-88e7-84c7ac1dac8e.png
 
 
-   From Apps to Hardware
+   ## From Apps to Hardware
 
   1. Apps: Application software, often referred to simply as "applications" or "apps," is a type of computer software that is designed to perform specific tasks or functions for end-users.
 
@@ -46,24 +47,25 @@ https://user-images.githubusercontent.com/142098395/261306361-4eabe0b7-4581-419b
 
 7. Hardware: Hardware refers to the physical components of a computer system or any electronic device. It encompasses all the tangible parts that make up a computing or electronic device and enable it to perform various tasks.
 
-Detail Description of Course Content
+## Detail Description of Course Content
 
-Pseudo Instructions: Pseudo-instructions are used to simplify programming, improve code readability, and reduce the number of explicit instructions a programmer needs to write. They are especially useful for common programming patterns that involve multiple instructions.
++ Pseudo Instructions: Pseudo-instructions are used to simplify programming, improve code readability, and reduce the number of explicit instructions a programmer needs to write. They are especially useful for common programming patterns that involve multiple instructions.
 
-Base Integer Instructions: The term "base integer instructions" refers to the fundamental set of instructions that form the foundation for performing basic arithmetic, logical, and data movement operations. 
++ Base Integer Instructions: The term "base integer instructions" refers to the fundamental set of instructions that form the foundation for performing basic arithmetic, logical, and data movement operations. 
 
-Multiply Extension Intructions: The RISC-V architecture includes a set of multiply and multiply-accumulate (MAC) extension instructions that enhance the instruction set to perform efficient multiplication and multiplication-accumulate operations. 
++ Multiply Extension Intructions: The RISC-V architecture includes a set of multiply and multiply-accumulate (MAC) extension instructions that enhance the instruction set to perform efficient multiplication and multiplication-accumulate operations. 
 
-Single and Double Precision Floating Point Extension: The RISC-V architecture includes floating-point extensions that provide support for both single-precision (32-bit) and double-precision (64-bit) floating-point arithmetic operations. These extensions are often referred to as the "F" and "D" extensions, respectively. Floating-point arithmetic is essential for handling real numbers with fractional parts and for performing accurate calculations involving decimal values.
++ Single and Double Precision Floating Point Extension: The RISC-V architecture includes floating-point extensions that provide support for both single-precision (32-bit) and double-precision (64-bit) floating-point arithmetic operations. These extensions are often referred to as the "F" and "D" extensions, respectively. Floating-point arithmetic is essential for handling real numbers with fractional parts and for performing accurate calculations involving decimal values.
 
-Application Binary Interface: ABI stands for "Application Binary Interface." It is a set of rules and conventions that govern how software components interact with each other at the binary level. The ABI defines various aspects of program execution, including how function calls are made, how parameters are passed and returned, how memory is allocated and managed, and more.
++ Application Binary Interface: ABI stands for "Application Binary Interface." It is a set of rules and conventions that govern how software components interact with each other at the binary level. The ABI defines various aspects of program execution, including how function calls are made, how parameters are passed and returned, how memory is allocated and managed, and more.
 
-Memory Allocation and Stack Pointer
++ Memory Allocation and Stack Pointer
 - Memory allocation refers to the process of assigning and managing memory segments for various data structures, variables, and objects used by a program. It involves allocating memory space from the system's memory pool and releasing it when it is no longer needed to prevent memory leaks.
 - The stack pointer is a register used by a program to keep track of the current position of the program's execution on the call stack.
 
-```
 
+## Labwork for RISCV Toolchain
+We wrote a C program for calculating the sum from 1 to n using a text editor
   
 
 
