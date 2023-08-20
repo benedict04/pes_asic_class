@@ -98,7 +98,7 @@ When we use -Ofast optimization , we can see that the number of instructions hav
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/028ae227-578a-4a6c-83e6-904cd5b21b20)
 
 ## Spike Simulation and Debug
-spike -d pk sum1ton.o is used debugging
+spike -d pk sum1ton.o is used for debugging. Each address of instruction can be viewed
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/b0c62458-f3d1-4e52-8f97-5213e63e4ba1)
 
 ## Integer Number Representation
