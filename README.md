@@ -188,7 +188,9 @@ ABI names for registers serve as a standardized way to designate the purpose and
 
 ### Asseembly File 
 // .section .text
+ 
    .global load
+  
    .type load, @function
 
     load:
