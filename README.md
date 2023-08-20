@@ -66,17 +66,20 @@ TABLE OF CONTENTS
 
 ## Labwork for RISCV Toolchain
 We wrote a C program for calculating the sum from 1 to n using a text editor
-```
-#include<stdio.h>
 
-int main(){
-	int i, sum=0, n=26;
-	for (i=1;i<=n; ++i) {
-	sum +=i;
-	}
-	printf("Sum of numbers from 1 to %d is %d \n",n,sum);
-	return 0;
-}
+// #include<stdio.h>
+
+    int main()
+    {
+    int i, sum=0, n=100;
+    for (i=1;i<=n; ++i) 
+    {
+    sum +=i;
+    }
+    printf("Sum of numbers from 1 to %d is %d \n",n,sum);
+    return 0;
+    }
+
 
 Using the gcc compiler, we compiled the program to get the output.
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/351a0ab8-e5ac-4177-b66c-341305b20e7f)
@@ -105,34 +108,101 @@ spike -d pk sum1ton.o is used debugging
 - Range : -(2^(N-1)) to 2^(N-1) - 1.
 
 ## Labwork
-```#include <stdio.h>
-#include <math.h>
+// #include <stdio.h>
+   #include <math.h>
 
-int main(){
-	unsigned long long int max = (unsigned long long int) (pow(2,64) -1);
-	unsigned long long int min = (unsigned long long int) (pow(2,64) *(-1));
-	printf("lowest number represented by unsigned 64-bit integer is %llu\n",min);
-	printf("highest number represented by unsigned 64-bit integer is %llu\n",max);
-	return 0;
-}
+    int main()
+    {
+    unsigned long long int max = (unsigned long long int) (pow(2,64) -1);
+    unsigned long long int min = (unsigned long long int) (pow(2,64) *(-1));
+    printf("lowest number represented by unsigned 64-bit integer is %llu\n",min);
+    printf("highest number represented by unsigned 64-bit integer is %llu\n",max);
+    return 0;
+    }
 ![Screenshot from 2023-08-19 08-45-25](https://github.com/benedict04/pes_asic_class/assets/109859485/8a99bfd2-da46-42c2-81dc-c454f303d66b)
 
 ### Signed 64-bit Number
-```#include <stdio.h>
-#include <math.h>
+//  #include <stdio.h>
+    #include <math.h>
 
-int main(){
-	unsigned long long int max = (unsigned long long int) (pow(2,64) -1);
-	unsigned long long int min = (unsigned long long int) (pow(2,64) *(-1));
-	printf("lowest number represented by unsigned 64-bit integer is %llu\n",min);
-	printf("highest number represented by unsigned 64-bit integer is %llu\n",max);
-	return 0;
-}
+       int main()
+       {
+       unsigned long long int max = (unsigned long long int) (pow(2,64) -1);
+       unsigned long long int min = (unsigned long long int) (pow(2,64) *(-1));
+       printf("lowest number represented by unsigned 64-bit integer is %llu\n",min);
+       printf("highest number represented by unsigned 64-bit integer is %llu\n",max);
+       return 0;
+      }
+![Screenshot from 2023-08-19 10-57-43](https://github.com/benedict04/pes_asic_class/assets/109859485/c3d8415c-291a-4d55-a9ae-de46829b42c4)
+
 
 # Application Binary Interface
 ## Introduction to ABI
 - An Application Binary Interface (ABI) is a set of rules and conventions that dictate how binary code interacts with and communicates with other binary code, typically at the level of machine code or compiled code. In simpler terms, it defines the interface between two software components or systems that are written in different programming languages, compiled by different compilers, or running on different hardware architectures.
 - The ABI is crucial for enabling interoperability between different software components, such as different libraries, object files, or even entire programs. It allows components compiled independently and potentially on different platforms to work seamlessly together by adhering to a common set of rules for communication and data representation.
+
+## Memmory Allocation for Double Words
+64-bit number (or any multi-byte value) can be loaded into memory in little-endian or big-endian. It involves understanding the byte order and arranging the bytes accordingly
+
+- Little-Endian: In little-endian representation, you store the least significant byte (LSB) at the lowest memory address and the most significant byte (MSB) at the highest memory address.
+- Big-Endian: In big-endian representation, you store the most significant byte (MSB) at the lowest memory address and the least significant byte (LSB) at the highest memory address.
+
+## Load, Add and Store Instructions
+- Load Instructions: Load instructions are used to transfer data from memory to registers. They allow you to fetch data from a specified memory address and place it into a register for further processing.
+- Store Instructions: Store instructions are used to write data from registers into memory.They store values from registers into memory addresses
+- Add Instructions: Add instructions are used to perform addition operations on registers. They add the values of two source registers and store the result in a destination register.
+
+## Registers and their ABI Names
+ABI names for registers serve as a standardized way to designate the purpose and usage of specific registers within a software ecosystem. These names play a critical role in maintaining compatibility, optimizing code generation, and facilitating communication between different software components.
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/bea86dd0-1ee3-45bd-a814-dcc29eec5591)
+
+# Labwork using ABI Function Calls
+
+## Algorithm for C Program using ASM
+- Incorporating assembly language code into a C program can be done using inline assembly or by linking separate assembly files with your C code.
+- When you call an assembly function from your C code, the C calling convention is followed, including pushing arguments onto the stack or passing them in registers as required.
+- The program executes the assembly function, following the assembly instructions you've provided.
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/6dd201db-8994-41cd-9957-8e914a7f3c2c)
+
+## Review ASM Function Calls
+- You write your C code in one file and your assembly code in a separate file.
+- In the assembly file, you declare assembly functions with appropriate signatures that match the calling conventions of your platform.
+
+  ### c program
+ // #include <stdio.h>
+
+     extern int load(int x, int y);
+
+     int main()
+     {
+     int result = 0;
+     int count = 9;
+     result = load(0x0, count+1);
+     printf("Sum of numbers from 1 to 9 is %d\n", result);
+    }
+
+### Asseembly File 
+// .section .text
+   .global load
+   .type load, @function
+
+    load:
+
+    add a4, a0, zero
+    add a2, a0, a1
+    add a3, a0, zero
+
+    loop:
+
+    add a4, a3, a4
+    addi a3, a3, 1
+    blt a3, a2, loop
+    add a0, a4, zero
+    ret
+  
+ 
 
 
 
