@@ -66,6 +66,61 @@ TABLE OF CONTENTS
 
 ## Labwork for RISCV Toolchain
 We wrote a C program for calculating the sum from 1 to n using a text editor
+```
+#include<stdio.h>
+
+int main(){
+	int i, sum=0, n=26;
+	for (i=1;i<=n; ++i) {
+	sum +=i;
+	}
+	printf("Sum of numbers from 1 to %d is %d \n",n,sum);
+	return 0;
+}
+
+Using the gcc compiler, we compiled the program to get the output.
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/351a0ab8-e5ac-4177-b66c-341305b20e7f)
+
+## RISCV GCC Compiler and Dissemble
+Using the riscv gcc compiler we compiled the C program.
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/a0cd1936-ad55-492c-8ca6-bc1c383d3b94)
+To get the assembly code for the C program we use riscv64-unknown-elf-objdump -d sum1ton.o | less 
+Here, since we used -O1 optimisation, the number of instructions are 15.
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/c563c01b-7548-4a3a-87de-4ecefbe21001)
+
+When we use -Ofast optimization , we can see that the number of instructions have been 12
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/028ae227-578a-4a6c-83e6-904cd5b21b20)
+
+## Spike Simulation and Debug
+spike -d pk sum1ton.o is used debugging
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/b0c62458-f3d1-4e52-8f97-5213e63e4ba1)
+
+## Integer Number Representation
+### Unsigned Numbers
+
+- Unsigned numbers, also known as non-negative numbers, are numerical values that represent magnitudes without indicating direction or sign.
+- Range: 0 to 2^(N) - 1.
+### Signed Numbers
+- Signed numbers are numerical values that can represent both positive and negative magnitudes, along with zero.
+- Range : -(2^(N-1)) to 2^(N-1) - 1.
+
+## Labwork
+```#include <stdio.h>
+#include <math.h>
+
+int main(){
+	unsigned long long int max = (unsigned long long int) (pow(2,64) -1);
+	unsigned long long int min = (unsigned long long int) (pow(2,64) *(-1));
+	printf("lowest number represented by unsigned 64-bit integer is %llu\n",min);
+	printf("highest number represented by unsigned 64-bit integer is %llu\n",max);
+	return 0;
+}
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/7c6cdfa6-2683-4951-9be9-6f03bd7a1018)
+
+
+
+
   
 
 
