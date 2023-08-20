@@ -1,3 +1,6 @@
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/2d45d0e2-8c4c-4596-86fa-f146a0c2cb05)         ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/bcf6ff7b-42f4-4883-a367-3d74c1cfcff9)
+
+
 # pes_asic_class
 The objective of VLSI (Very Large Scale Integration) physical design for ASICs (Application-Specific Integrated Circuits) is to transform a digital circuit's logical representation into a physical layout that meets various performance, power, area, and manufacturability requirements.
 
