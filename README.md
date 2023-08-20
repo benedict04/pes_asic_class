@@ -84,6 +84,7 @@ int main(){
 ```
 
 Using the gcc compiler, we compiled the program to get the output.
+
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/351a0ab8-e5ac-4177-b66c-341305b20e7f)
 
 ## RISCV GCC Compiler and Dissemble
