@@ -220,6 +220,9 @@ ret
 
 **Execution:** To execute the object file run the command `spike pk custom1to9.o`
 
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/e36c7aac-cd2a-49ca-9426-437d20b22933)
+
+
 
  
 
