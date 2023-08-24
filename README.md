@@ -222,6 +222,11 @@ ret
 
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/e36c7aac-cd2a-49ca-9426-437d20b22933)
 
+## Lab to Run C-Program on RISCV-CPU
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/789a6124-d077-4a00-8d35-baaa56726cac)
+
+
 
 
  
