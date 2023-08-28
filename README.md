@@ -227,6 +227,20 @@ ret
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/789a6124-d077-4a00-8d35-baaa56726cac)
 
 
+# DAY 3
+
+## Introduction to iverilog testbench
+### Testbench
+- Setup to apply the stimulus to the design to check its functionality.
+- Simulator checks for the changes on the input signals and then evaluates the output for the changes inputs.
+
+  ## IVERILOG
+
+ ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/ea6e48b0-31e4-4d9e-8709-64e2a7cc60d4)
+
+
+
+
 
 
  
