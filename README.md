@@ -263,6 +263,37 @@ ret
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/20a97bf8-3c1f-4eec-b668-c380501ec3e2)
 
 
+# Introduction to Yosys and Logic synthesis
+## Introduction to yosys
+Yosys is an synthesizer which is used to convert RTL to netlist
+
+![image](https://github.com/RohithNagesh/pes_asic_class/assets/103078929/bceda35c-e373-485b-8092-e210e37543f8)
+
+**`netlist` is the representation of `DESIGN` in the form of standard cells present in `.lib`**
+
+- To verify synthesis Netlist need to be fed to iverilog along with testbench
+- vcd file generated from iverilog need to be fed to gtkwave simulator
+- The output we get should be same as the output we got during RTL simulator
+
+  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/8923c296-62d3-44db-bc7a-cbf6b3008b5d)
+
+  - To verify synthesis Netlist need to be fed to iverilog along with testbench
+  - vcd file generated from iverilog need to be fed to gtkwave simulator
+  - The output we get should be same as the output we got during RTL simulator
+
+    ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/c3bfa8c5-502c-449a-995e-f157818124d3)
+
+    ## Introduction to logic synthesis
+
+ Fast and slow versions of gates are essential in digital circuit design to balance between clock frequency and timing constraints. Fast gates have shorter propagation delays and are used to reduce setup and hold time violations, allowing for higher clock frequencies. Slow gates, with longer delays, can be used to intentionally slow down critical paths or address timing issues. The Tclk formula helps calculate the maximum clock frequency while considering these factors.
+
+ 
+ 
+
+
+
+
+
 
 
 
