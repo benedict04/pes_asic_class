@@ -287,6 +287,45 @@ Yosys is an synthesizer which is used to convert RTL to netlist
 
  Fast and slow versions of gates are essential in digital circuit design to balance between clock frequency and timing constraints. Fast gates have shorter propagation delays and are used to reduce setup and hold time violations, allowing for higher clock frequencies. Slow gates, with longer delays, can be used to intentionally slow down critical paths or address timing issues. The Tclk formula helps calculate the maximum clock frequency while considering these factors.
 
+# Lab using Yosys and Sky130 PDKs
+
++ Go to verilog_files directory
++ once you get to verilog_files directory, Invoke yosys by using the command `yosys`
+
+  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/c629c4b4-3b06-4b83-b796-97231ab80575)
+
+  1. Read library: `read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/c59301cd-5838-4876-b0e0-8671010ac3a1)
+
+  2. Read design: `read_verilog good_mux.v`
+
+  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/8935d05a-7850-4bbd-9986-5dd6f1c182e8)
+
+  3. Synthesis: `synth -top good_mux`
+
+  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/31c5c6d7-a709-4f76-ab80-a2d2a4338404)
+
+  4. Generate netlist: `abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib`
+
+  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/2e33b87c-4a72-4c26-8cbf-f1cf539058c7)
+
+  5.  Logic realized: `show`
+
+  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/1172361e-5f35-460f-9938-6686b42633d7)
+
+  6. Write netlist: `write_verilog -noattr good_mux_netlist.v`
+    
+   ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/dde17d38-5e63-48b8-919d-a7a6d09571db)
+  
+
+
+
+     
+
+
+
+
  
  
 
