@@ -238,6 +238,17 @@ ret
 
  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/ea6e48b0-31e4-4d9e-8709-64e2a7cc60d4)
 
+ # Labs using iverilog and gtkwave
+## Introduction to lab
+- Make new directory `mkdir vsd`
+- `git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git`
+- This should create a folder `sky130RTLDesignAndSynthesisWorkshop` in `VDS` directory
+- You could see two folders under `sky130RTLDesignAndSynthesisWorkshop`
+   1. my_lib: It contains all the standard cell libraries and verilog module
+   2. verilog_files: It contains all the source code and testbench required for the lab
+
+ ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/1f368756-9133-4f33-a358-b320b653d2d0)
+
 
 
 
