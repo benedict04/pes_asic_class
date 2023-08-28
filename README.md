@@ -249,27 +249,16 @@ ret
 
  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/1f368756-9133-4f33-a358-b320b653d2d0)
 
-
-
-
-
-
-
-
-
-
+ ## Introduction iverilog gtkwave
+- Go to verilog_files directory
+- Load Design and Testbench using the command `iverilog good_mux.v tb_good_mux.v`
 
  ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/acc28cff-36b2-4859-babc-2f11378ef561)
 
-
-
-
-
-
-
-
-
-
+ - Upon loading sucessfully `a.out` will be generated
+- Execute the generated file it would dump `gtkwave tb_good_mux.vcd` file
+- Load the vcd file to simulator using the command `gtkwave tb_good_mux.vcd`
+ 
 
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/20a97bf8-3c1f-4eec-b668-c380501ec3e2)
 
