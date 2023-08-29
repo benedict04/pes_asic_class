@@ -608,6 +608,78 @@ module mult8(a, y);
   assign y = { a, a };
 endmodule
 ```
+# Introduction to optimizations
+### Types of combinational optimizations
++ **Constant Propagation:** This technique identifies and replaces variables or expressions with their constant values, reducing redundancy in code and improving performance.
+
+   + **Boolean Optimization:** This method simplifies boolean expressions or logic circuits by reducing the number of logical gates or terms while preserving the same logical behavior, which is useful in digital circuit design and logical reasoning.
+
+### Types of sequential optimizations
++ **State Optimization:** Reduces the number of states in finite state machines (FSMs) by merging equivalent states, simplifying the circuit.
+       + **Sequential Logic Cloning:** Replicates portions of sequential logic to alleviate bottlenecks and improve circuit throughput.
+       + **Retiming:** Adjusts the placement of flip-flops within a circuit to optimize timing, balance critical paths, and enhance overall performance.
+
+  # Combinational optimization
+  **opt_check.v**
+``` v
+module opt_check (input a , input b , output y);
+	assign y = a?b:0;
+endmodule
+```
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/4ad48885-d181-4b65-a62f-fc0b3fb1566c)
+
+**opt_check2.v**
+``` v
+module opt_check2 (input a , input b , output y);
+	assign y = a?1:b;
+endmodule
+```
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/44ce193b-2f7c-40bd-80be-40ee80f2c944)
+
+**opt_check3.v**
+``` v
+module opt_check3 (input a , input b, input c , output y);
+	assign y = a?(c?b:0):0;
+endmodule
+```
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/3f0bd163-4f0a-4508-ba42-052f75facd2d)
+
+**multiple_module_opt.v**
+``` v
+module sub_module1(input a , input b , output y);
+ assign y = a & b;
+endmodule
+
+
+module sub_module2(input a , input b , output y);
+ assign y = a^b;
+endmodule
+
+
+module multiple_module_opt(input a , input b , input c , input d , output y);
+wire n1,n2,n3;
+
+sub_module1 U1 (.a(a) , .b(1'b1) , .y(n1));
+sub_module2 U2 (.a(n1), .b(1'b0) , .y(n2));
+sub_module2 U3 (.a(b), .b(d) , .y(n3));
+
+assign y = c | (b & n1); 
+
+
+endmodule
+```
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/6b693e92-56cc-42af-931a-1d2dd986052c)
+
+
+
 
 
 
