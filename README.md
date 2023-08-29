@@ -679,7 +679,127 @@ endmodule
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/6b693e92-56cc-42af-931a-1d2dd986052c)
 
 
+# Sequential logic optimizations
+**dff_const1.v**
+``` v
+module dff_const1(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b0;
+	else
+		q <= 1'b1;
+end
 
+endmodule
+```
+**Simulate**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/eec6485c-46da-443a-b762-dfe73f1b5727)
+
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/a2c7a534-f5f4-428c-a361-d29abcab56ca)
+
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/42bd26f1-e629-49f4-9756-9461e10440ed)
+
+**dff_const2.v**
+``` v
+module dff_const2(input clk, input reset, output reg q);
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+		q <= 1'b1;
+	else
+		q <= 1'b1;
+end
+
+endmodule
+```
+**Simulate**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/183d4483-0e64-4f4a-8947-45ba4dfad07e)
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/e52639f1-2ca9-4d00-b2f4-c2c36339990b)
+
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/e188fe50-ddb8-4d97-b9ff-80351e627e49)
+
+**dff_const3.v**
+``` v
+module dff_const3(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+```
+
+**Simulate**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/f7d87667-53cf-4282-a3cf-6b1866c69816)
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/6c85cc7d-190d-48f1-8896-3b7d49515f57)
+
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/bffc33f5-2754-4580-afeb-99d6abe19cc2)
+
+# Sequential optimzations for unused outputs
+**counter_opt.v**
+``` v
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = count[0];
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+```
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/b1f6b80d-0ab5-4615-8729-3cd6ffd8b5d8)
+
+
+**counter_opt2.v**
+``` v
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = (count[2:0] == 3'b100);
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+```
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/a26d44df-d19c-485f-8894-b08085f38b57)
 
 
 
