@@ -486,6 +486,84 @@ endmodule
 
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/6834150e-dd66-4799-be3b-c4c11c10cc83)
 
+# Various Flop Coding Styles and optimization
+## Flop coding styles
+**Asynchronous Reset D Flip-Flop**
+When this input is asserted regardless of clock signal the flip flop output is immediately forced to predefined state.
+### dff_async_set.v
+``` v
+module dff_async_set ( input clk ,  input async_set , input d , output reg q );
+always @ (posedge clk , posedge async_set)
+begin
+	if(async_set)
+		q <= 1'b1;
+	else	
+		q <= d;
+end
+endmodule
+```
+**Synchronous Reset D Flip-Flop**
+The reset input is active during specific phase of clock cycle. When the reset signal is asserted during this specific clock edge the flipflop output is forced to predefined state.
+### dff_syncres.v
+``` v
+module dff_syncres ( input clk , input async_reset , input sync_reset , input d , output reg q );
+always @ (posedge clk )
+begin
+	if (sync_reset)
+		q <= 1'b0;
+	else	
+		q <= d;
+end
+endmodule
+```
+**D Flip-Flop with Asynchronous Reset and Synchronous Reset**
+- This flip-flop combines both asynchronous and synchronous reset features.
+- When the asynchronous reset input is activated (set to '1'), the stored value is immediately forced to '0'.
+- When the synchronous reset input is activated (set to '1') at the positive edge of the clock signal, the stored value is forced to '0'.
+- Otherwise, on the positive edge of the clock signal, the stored value is updated with the data input.
+### dff_asyncres_syncres.v
+``` v
+module dff_asyncres_syncres ( input clk , input async_reset , input sync_reset , input d , output reg q );
+always @ (posedge clk , posedge async_reset)
+begin
+	if(async_reset)
+		q <= 1'b0;
+	else if (sync_reset)
+		q <= 1'b0;
+	else	
+		q <= d;
+end
+endmodule
+```
+## Flop synthesis simulations 
+**Asynchronous Reset D Flip-Flop**
+
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/a36808e7-d503-4daf-bdc7-3127ec1afa22)
+
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/56b65976-75cc-40e6-9645-57c5336b2902)
+
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/7ed23de9-3bcd-4912-a9db-242e4840f8c2)
+
+
+**Asynchronous set D Flip-Flop**
+**Simulation**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/f0a30274-4a77-40e0-9926-234e284797e3)
+
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/e9b072ab-5466-4659-a44e-124b89723b9a)
+
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/b58276ff-9ae7-4077-986f-10ceec8935ec)
+
+
+
+
 
 
   
