@@ -561,6 +561,19 @@ endmodule
 
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/b58276ff-9ae7-4077-986f-10ceec8935ec)
 
+ ## Interesting optimisations 
+ **mult_2.v**
+``` v
+module mul2 (input [2:0] a, output [3:0] y);
+	assign y = a * 2;
+endmodule
+```
+**Synthesis**
+
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/5b1e1a58-6b46-4931-bcae-020b7d7538c3)
+
+
 
 
 
