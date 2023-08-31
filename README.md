@@ -801,13 +801,86 @@ endmodule
 
 ![image](https://github.com/benedict04/pes_asic_class/assets/109859485/a26d44df-d19c-485f-8894-b08085f38b57)
 
+# Labs on GLS and Synthesis-Simulation Mismatch
+
+**ternary_operator_mux.v**
+``` v
+module ternary_operator_mux (input i0 , input i1 , input sel , output y);
+	assign y = sel?i1:i0;
+endmodule
+```
+**RTL Simulation**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/039f7c72-bb08-48e2-8a21-354146eda35e)
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/2ff6334e-2a6e-493c-8845-ac08e2807641)
+
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/0943d01b-1263-4cb4-b83a-40d8b051269d)
+
+**GLS**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/e2a7e70b-2f6e-49f8-b2ff-032decd5df88)
 
 
+** bad_mux.v**
+``` v
+module bad_mux (input i0 , input i1 , input sel , output reg y);
+always @ (sel)
+begin
+	if(sel)
+		y <= i1;
+	else 
+		y <= i0;
+end
+endmodule
+```
+**RTL Simulation**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/5aa90411-941c-4c7e-a6d2-0c4f6c550318)
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/100da2a8-479a-48f3-bc4a-1f668ef85ade)
+
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/cb0773a4-4fee-45ac-80b6-89145b36c37d)
+
+**GLS**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/a4363e2b-c854-4846-aecf-45903d3cfd4c)
+
+# Labs on synth-sim mismatch for blocking statement
+
+**blocking_caveat.v**
+``` v
+module blocking_caveat (input a , input b , input  c, output reg d); 
+reg x;
+always @ (*)
+begin
+	d = x & c;
+	x = a | b;
+end
+endmodule
+```
+**RTL Simulation**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/4aed3a57-672b-435f-8f7b-8b5c6d0e99f1)
 
 
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/c88002f9-b95f-47bd-85b1-b99cd6c7b195)
+
+**Synthesis**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/956d4fe2-9eb8-404e-872c-2ff62a702807)
+
+**GLS**
+
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/d9f92b5e-4487-451e-8652-cd35e5eb0edc)
 
 
-  
+![image](https://github.com/benedict04/pes_asic_class/assets/109859485/3c12227a-a34d-4801-92e1-1a77fd42d03c)
+
 
 
 
